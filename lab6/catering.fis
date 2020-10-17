@@ -1,0 +1,41 @@
+[System]
+Name='catering'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='service'
+Range=[0 5]
+NumMFs=3
+MF1='low':'trimf',[-2.5 0 2.5]
+MF2='ok':'trimf',[0 2.5 5]
+MF3='high':'trimf',[2.5 5 7.5]
+
+[Input2]
+Name='demand'
+Range=[0 100]
+NumMFs=3
+MF1='low':'trimf',[-50 0 50]
+MF2='ok':'trimf',[0 50 100]
+MF3='high':'trimf',[50 100 150]
+
+[Output1]
+Name='Score'
+Range=[0 5]
+NumMFs=3
+MF1='bad':'gaussmf',[1.062 -2.776e-17]
+MF2='good':'gaussmf',[1.062 2.5]
+MF3='exellent':'gaussmf',[1.062 5]
+
+[Rules]
+1 1, 1 (1) : 2
+3 3, 3 (1) : 2
+2 0, 2 (1) : 2
